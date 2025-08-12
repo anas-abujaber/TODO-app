@@ -1,0 +1,25 @@
+body {
+  background-color: silver;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  background-color: white;
+  width: 300px;
+  text-align: center;
+  border-radius: 10px;
+}
+#add-task input,
+button {
+  height: 30px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+#add-task button {
+  background-color: green;
+  color: white;
+}
