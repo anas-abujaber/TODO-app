@@ -22,3 +22,19 @@ buttonAdd.addEventListener("click", function () {
     input.focus();
   }
 });
+tasksList.addEventListener("change", function (e) {
+  if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
+    const task = e.target.closest(".task");
+    if (task) task.classList.toggle("completed", e.target.checked);
+  }
+});
+
+tasksList.addEventListener("click", function (e) {
+  if (
+    e.target.tagName === "BUTTON" &&
+    e.target.textContent.trim() === "Delete"
+  ) {
+    const task = e.target.closest(".task");
+    if (task) task.remove();
+  }
+});

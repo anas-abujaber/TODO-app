@@ -11,7 +11,7 @@ li {
   padding: 0px;
 }
 .container {
-  background-color:#5d5a5a;
+  background-color: #5d5a5a;
   color: white;
   min-width: 350px;
   text-align: center;
@@ -70,4 +70,17 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.task.completed {
+  text-decoration: line-through;
+  color: black;
+}
+.divTaskEdit {
+  display: inline-flex;
+  gap: 8px;
+  margin-left: 8px;
+}
+.completed {
+  color: rgb(12, 12, 12);
+  text-decoration: line-through;
 }
