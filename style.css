@@ -1,5 +1,5 @@
 body {
-  background-color: #a3f1d3;
+  background-color: #f0f4f8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +11,7 @@ li {
   padding: 0px;
 }
 .container {
-  background-color: #5d5a5a;
+  background-color: #2f3e46;
   color: white;
   min-width: 350px;
   text-align: center;
@@ -28,11 +28,11 @@ button {
   margin: 5px;
 }
 #add-task button {
-  background-color: green;
+  background-color: #28a745;
   color: white;
 }
 #add-task button:hover {
-  background-color: darkgreen;
+  background-color: #218838;
 }
 #tasks-list {
   display: flex;
@@ -47,6 +47,8 @@ button {
   width: 100%;
   display: flex;
   align-items: center;
+  background-color: #f8f9fa;
+  color: #212529;
   padding: 5px;
   height: 50px;
   border-radius: 2px;
@@ -68,13 +70,13 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  background-color: #e63946;
   color: white;
   font-size: 10px;
 }
 .task button:hover {
   cursor: pointer;
-  background-color: brown;
+  background-color: #d62828;
 }
 .divTaskEdit {
   display: flex;
@@ -84,7 +86,7 @@ button {
 .task.completed {
   text-decoration: line-through;
   color: black;
-  background-color: green;
+  background-color: #b7e4c7;
 }
 .divTaskEdit {
   display: inline-flex;
