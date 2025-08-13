@@ -2,8 +2,15 @@ const input = document.getElementById("input-text");
 const buttonAdd = document.getElementById("add");
 const tasksList = document.getElementById("tasks-list");
 
+input.addEventListener("keydown", function (e) {
+  const inputText = input.value.trim();
+  if (e.key === "Enter" && inputText) {
+    console.log(e.key);
+    buttonAdd.click();
+  }
+});
 buttonAdd.addEventListener("click", function () {
-  const inputText=input.value.trim()
+  const inputText = input.value.trim();
   if (inputText) {
     const task = document.createElement("li");
     task.textContent = input.value;
