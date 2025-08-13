@@ -6,7 +6,17 @@ buttonAdd.addEventListener("click", function () {
   if (input.value) {
     const task = document.createElement("li");
     task.textContent = input.value;
-    task.classList.add('task')
-    tasksList.append(task)
+    task.classList.add("task");
+    const completeButton = document.createElement("input");
+    completeButton.type = "checkbox";
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+
+    const divTaskEdit = document.createElement("div");
+    divTaskEdit.classList.add("divTaskEdit");
+    divTaskEdit.append(completeButton, deleteButton);
+    task.append(divTaskEdit);
+    tasksList.append(task);
   }
 });
