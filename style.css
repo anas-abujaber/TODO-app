@@ -74,13 +74,10 @@ button {
 .task.completed {
   text-decoration: line-through;
   color: black;
+  background-color: green;
 }
 .divTaskEdit {
   display: inline-flex;
   gap: 8px;
   margin-left: 8px;
-}
-.completed {
-  color: rgb(12, 12, 12);
-  text-decoration: line-through;
 }
