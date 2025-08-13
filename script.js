@@ -13,13 +13,14 @@ buttonAdd.addEventListener("click", function () {
   const inputText = input.value.trim();
   if (inputText) {
     const task = document.createElement("li");
-    task.textContent = input.value;
+    task.textContent = inputText;
     task.classList.add("task");
     const completeButton = document.createElement("input");
     completeButton.type = "checkbox";
 
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
+    deleteButton.classList.add("btn-delete");
 
     const divTaskEdit = document.createElement("div");
     divTaskEdit.classList.add("divTaskEdit");
@@ -38,10 +39,7 @@ tasksList.addEventListener("change", function (e) {
 });
 
 tasksList.addEventListener("click", function (e) {
-  if (
-    e.target.tagName === "BUTTON" &&
-    e.target.textContent.trim() === "Delete"
-  ) {
+  if (e.target.matches("button.btn-delete")) {
     const task = e.target.closest(".task");
     if (task) task.remove();
   }
