@@ -12,13 +12,23 @@ input.addEventListener("keydown", function (e) {
 buttonAdd.addEventListener("click", function () {
   const inputText = input.value.trim();
   if (inputText) {
+    for (let task of tasksList.children) {
+      const span = task.querySelector("span");
+      console.log(span.textContent);
+      if (span && span.textContent.trim() === inputText) {
+        alert("the task already exist");
+        input.value = "";
+        input.focus();
+        return;
+      }
+    }
     const task = document.createElement("li");
     task.classList.add("task");
 
     const taskSpan = document.createElement("span");
     taskSpan.textContent = inputText;
     task.append(taskSpan);
-    
+
     const completeButton = document.createElement("input");
     completeButton.type = "checkbox";
 
