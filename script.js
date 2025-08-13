@@ -13,8 +13,12 @@ buttonAdd.addEventListener("click", function () {
   const inputText = input.value.trim();
   if (inputText) {
     const task = document.createElement("li");
-    task.textContent = inputText;
     task.classList.add("task");
+
+    const taskSpan = document.createElement("span");
+    taskSpan.textContent = inputText;
+    task.append(taskSpan);
+    
     const completeButton = document.createElement("input");
     completeButton.type = "checkbox";
 
