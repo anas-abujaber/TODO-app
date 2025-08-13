@@ -3,7 +3,8 @@ const buttonAdd = document.getElementById("add");
 const tasksList = document.getElementById("tasks-list");
 
 buttonAdd.addEventListener("click", function () {
-  if (input.value) {
+  const inputText=input.value.trim()
+  if (inputText) {
     const task = document.createElement("li");
     task.textContent = input.value;
     task.classList.add("task");
