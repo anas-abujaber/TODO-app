@@ -16,6 +16,7 @@ li {
   min-width: 350px;
   text-align: center;
   border-radius: 10px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
 }
 #add-task input,
 button {
@@ -30,6 +31,7 @@ button {
 #add-task button {
   background-color: #28a745;
   color: white;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
 }
 #add-task button:hover {
   background-color: #218838;
