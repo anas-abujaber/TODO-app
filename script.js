@@ -18,5 +18,7 @@ buttonAdd.addEventListener("click", function () {
     divTaskEdit.append(completeButton, deleteButton);
     task.append(divTaskEdit);
     tasksList.append(task);
+    input.value = "";
+    input.focus();
   }
 });
