@@ -9,8 +9,15 @@ input.addEventListener("keydown", function (e) {
     buttonAdd.click();
   }
 });
+function getInputText() {
+  return input.value.trim();
+}
+function clearAndFocusInput() {
+  input.value = "";
+  input.focus();
+}
 buttonAdd.addEventListener("click", function () {
-  const inputText = input.value.trim();
+  const inputText = getInputText();
   if (inputText) {
     for (let task of tasksList.children) {
       const span = task.querySelector("span");
@@ -41,8 +48,7 @@ buttonAdd.addEventListener("click", function () {
     divTaskEdit.append(completeButton, deleteButton);
     task.append(divTaskEdit);
     tasksList.append(task);
-    input.value = "";
-    input.focus();
+    clearAndFocusInput();
   }
 });
 tasksList.addEventListener("change", function (e) {
