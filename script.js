@@ -2,13 +2,51 @@ const input = document.getElementById("input-text");
 const buttonAdd = document.getElementById("add");
 const tasksList = document.getElementById("tasks-list");
 
-input.addEventListener("keydown", function (e) {
-  const inputText = input.value.trim();
-  if (e.key === "Enter" && inputText) {
-    console.log(e.key);
-    buttonAdd.click();
+buttonAdd.addEventListener("click", addTask);
+
+function isDuplicateTask(text) {
+  const target = text.toLowerCase();
+  for (let task of tasksList.children) {
+    const span = task.querySelector("span");
+    if (span && span.textContent.trim().toLowerCase() === target) {
+      return true;
+    }
+  }
+  return false;
+}
+
+tasksList.addEventListener("change", function (e) {
+  if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
+    const task = e.target.closest(".task");
+    if (task) task.classList.toggle("completed", e.target.checked);
   }
 });
+
+tasksList.addEventListener("click", function (e) {
+  if (e.target.matches("button.btn-delete")) {
+    const task = e.target.closest(".task");
+    if (task) task.remove();
+  }
+});
+
+input.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") addTask();
+});
+
+function addTask() {
+  const inputText = getInputText();
+  if (!inputText) return;
+
+  if (isDuplicateTask(inputText)) {
+    alert("the task already exist");
+    clearAndFocusInput();
+    return;
+  }
+
+  const task = createTaskElement(inputText);
+  tasksList.append(task);
+  clearAndFocusInput();
+}
 function getInputText() {
   return input.value.trim();
 }
@@ -38,42 +76,3 @@ function createTaskElement(text) {
   task.append(divTaskEdit);
   return task;
 }
-
-buttonAdd.addEventListener("click", function () {
-  const inputText = getInputText();
-  if (inputText) {
-    if (isDuplicateTask(inputText)) {
-      alert("the task already exists");
-      clearAndFocusInput();
-      return;
-    }
-    const task = createTaskElement(inputText);
-    tasksList.append(task);
-    clearAndFocusInput();
-  }
-});
-
-function isDuplicateTask(text) {
-  const target = text.toLowerCase();
-  for (let task of tasksList.children) {
-    const span = task.querySelector("span");
-    if (span && span.textContent.trim().toLowerCase() === target) {
-      return true;
-    }
-  }
-  return false;
-}
-
-tasksList.addEventListener("change", function (e) {
-  if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
-    const task = e.target.closest(".task");
-    if (task) task.classList.toggle("completed", e.target.checked);
-  }
-});
-
-tasksList.addEventListener("click", function (e) {
-  if (e.target.matches("button.btn-delete")) {
-    const task = e.target.closest(".task");
-    if (task) task.remove();
-  }
-});
