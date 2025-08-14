@@ -16,6 +16,29 @@ function clearAndFocusInput() {
   input.value = "";
   input.focus();
 }
+function createTaskElement(text) {
+  const task = document.createElement("li");
+  task.classList.add("task");
+
+  const taskSpan = document.createElement("span");
+  taskSpan.textContent = text;
+  task.append(taskSpan);
+
+  const completeButton = document.createElement("input");
+  completeButton.type = "checkbox";
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.classList.add("btn-delete");
+
+  const divTaskEdit = document.createElement("div");
+  divTaskEdit.classList.add("divTaskEdit");
+  divTaskEdit.append(completeButton, deleteButton);
+
+  task.append(divTaskEdit);
+  return task;
+}
+
 buttonAdd.addEventListener("click", function () {
   const inputText = getInputText();
   if (inputText) {
@@ -29,24 +52,7 @@ buttonAdd.addEventListener("click", function () {
         return;
       }
     }
-    const task = document.createElement("li");
-    task.classList.add("task");
-
-    const taskSpan = document.createElement("span");
-    taskSpan.textContent = inputText;
-    task.append(taskSpan);
-
-    const completeButton = document.createElement("input");
-    completeButton.type = "checkbox";
-
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.classList.add("btn-delete");
-
-    const divTaskEdit = document.createElement("div");
-    divTaskEdit.classList.add("divTaskEdit");
-    divTaskEdit.append(completeButton, deleteButton);
-    task.append(divTaskEdit);
+    const task = createTaskElement(inputText);
     tasksList.append(task);
     clearAndFocusInput();
   }
