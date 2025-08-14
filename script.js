@@ -4,6 +4,13 @@ const tasksList = document.getElementById("tasks-list");
 
 buttonAdd.addEventListener("click", addTask);
 
+tasksList.addEventListener("change", toggleTaskComplete);
+tasksList.addEventListener("click", deleteTask);
+
+input.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") addTask();
+});
+
 function isDuplicateTask(text) {
   const target = text.toLowerCase();
   for (let task of tasksList.children) {
@@ -15,23 +22,6 @@ function isDuplicateTask(text) {
   return false;
 }
 
-tasksList.addEventListener("change", function (e) {
-  if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
-    const task = e.target.closest(".task");
-    if (task) task.classList.toggle("completed", e.target.checked);
-  }
-});
-
-tasksList.addEventListener("click", function (e) {
-  if (e.target.matches("button.btn-delete")) {
-    const task = e.target.closest(".task");
-    if (task) task.remove();
-  }
-});
-
-input.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") addTask();
-});
 
 function addTask() {
   const inputText = getInputText();
@@ -75,4 +65,17 @@ function createTaskElement(text) {
 
   task.append(divTaskEdit);
   return task;
+}
+function toggleTaskComplete(e) {
+  if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
+    const task = e.target.closest(".task");
+    if (task) task.classList.toggle("completed", e.target.checked);
+  }
+}
+
+function deleteTask(e) {
+  if (e.target.matches("button.btn-delete")) {
+    const task = e.target.closest(".task");
+    if (task) task.remove();
+  }
 }
