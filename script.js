@@ -42,21 +42,28 @@ function createTaskElement(text) {
 buttonAdd.addEventListener("click", function () {
   const inputText = getInputText();
   if (inputText) {
-    for (let task of tasksList.children) {
-      const span = task.querySelector("span");
-      console.log(span.textContent);
-      if (span && span.textContent.trim() === inputText) {
-        alert("the task already exist");
-        input.value = "";
-        input.focus();
-        return;
-      }
+    if (isDuplicateTask(inputText)) {
+      alert("the task already exists");
+      clearAndFocusInput();
+      return;
     }
     const task = createTaskElement(inputText);
     tasksList.append(task);
     clearAndFocusInput();
   }
 });
+
+function isDuplicateTask(text) {
+  const target = text.toLowerCase();
+  for (let task of tasksList.children) {
+    const span = task.querySelector("span");
+    if (span && span.textContent.trim().toLowerCase() === target) {
+      return true;
+    }
+  }
+  return false;
+}
+
 tasksList.addEventListener("change", function (e) {
   if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
     const task = e.target.closest(".task");
