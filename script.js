@@ -10,6 +10,20 @@ tasksList.addEventListener("click", deleteTask);
 input.addEventListener("keydown", function (e) {
   if (e.key === "Enter") addTask();
 });
+function loadTasks() {
+  let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+  taskList.forEach((t) => {
+    const task = createTaskElement(t);
+    if (t.completed) {
+      task.classList.add("completed");
+      task.querySelector("input").checked = true;
+    }
+    tasksList.append(task);
+  });
+}
+
+window.addEventListener("DOMContentLoaded", loadTasks);
+
 function isDuplicateTask(text) {
   const target = text.toLowerCase();
   for (let task of tasksList.children) {
