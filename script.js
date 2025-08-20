@@ -33,7 +33,8 @@ function addTask() {
     return;
   }
 
-  const task = createTaskElement(inputText);
+  const taskObj = { title: inputText, completed: false };
+  const task = createTaskElement(taskObj);
   tasksList.append(task);
   clearAndFocusInput();
 }
@@ -44,12 +45,12 @@ function clearAndFocusInput() {
   input.value = "";
   input.focus();
 }
-function createTaskElement(text) {
+function createTaskElement(taskObj) {
   const task = document.createElement("li");
   task.classList.add("task");
 
   const taskSpan = document.createElement("span");
-  taskSpan.textContent = text;
+  taskSpan.textContent = taskObj.title;
   task.append(taskSpan);
 
   const completeButton = document.createElement("input");
