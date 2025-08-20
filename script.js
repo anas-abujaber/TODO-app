@@ -10,7 +10,6 @@ tasksList.addEventListener("click", deleteTask);
 input.addEventListener("keydown", function (e) {
   if (e.key === "Enter") addTask();
 });
-
 function isDuplicateTask(text) {
   const target = text.toLowerCase();
   for (let task of tasksList.children) {
@@ -21,7 +20,11 @@ function isDuplicateTask(text) {
   }
   return false;
 }
-
+function addTaskToStorage({ title, completed }) {
+  const taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+  taskList.push({ title, completed });
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+}
 
 function addTask() {
   const inputText = getInputText();
@@ -36,6 +39,7 @@ function addTask() {
   const taskObj = { title: inputText, completed: false };
   const task = createTaskElement(taskObj);
   tasksList.append(task);
+  addTaskToStorage(taskObj);
   clearAndFocusInput();
 }
 function getInputText() {
@@ -67,10 +71,20 @@ function createTaskElement(taskObj) {
   task.append(divTaskEdit);
   return task;
 }
+function updateTaskStatus(title, completed) {
+  let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+  taskList = taskList.map((t) => {
+    return t.title === title ? { ...t, completed } : t;
+  });
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+}
+
 function toggleTaskComplete(e) {
   if (e.target.tagName === "INPUT" && e.target.type === "checkbox") {
     const task = e.target.closest(".task");
     if (task) task.classList.toggle("completed", e.target.checked);
+    const title = task.querySelector("span").textContent.trim();
+    updateTaskStatus(title, e.target.checked);
   }
 }
 
