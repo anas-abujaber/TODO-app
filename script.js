@@ -101,10 +101,18 @@ function toggleTaskComplete(e) {
     updateTaskStatus(title, e.target.checked);
   }
 }
-
+function deleteTaskFromStorage(title) {
+  let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+  taskList = taskList.filter((t) => t.title !== title);
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+}
 function deleteTask(e) {
   if (e.target.matches("button.btn-delete")) {
     const task = e.target.closest(".task");
-    if (task) task.remove();
+    if (task) {
+      const title = task.querySelector("span").textContent.trim();
+      deleteTaskFromStorage(title);
+      task.remove();
+    }
   }
 }
